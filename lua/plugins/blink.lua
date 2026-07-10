@@ -6,6 +6,12 @@ return {
     keymap = {
       -- preset = "default",
       preset = "enter",
+
+      ["<M-'>"] = {
+        "show",
+        "show_documentation",
+        "hide_documentation",
+      },
     },
 
     appearance = {
