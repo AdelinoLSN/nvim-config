@@ -1,5 +1,25 @@
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Close" })
+vim.keymap.set("n", "<leader>q", function()
+  local current_win = vim.api.nvim_get_current_win()
+  local current_buf = vim.api.nvim_win_get_buf(current_win)
+
+  if vim.bo[current_buf].filetype == "neo-tree" then
+    vim.cmd("quit")
+    return
+  end
+
+  local other_windows = vim.tbl_filter(function(win)
+    local buf = vim.api.nvim_win_get_buf(win)
+    return win ~= current_win and vim.bo[buf].filetype ~= "neo-tree"
+  end, vim.api.nvim_list_wins())
+
+  if #other_windows == 0 then
+    vim.cmd("Neotree show")
+    vim.cmd("bdelete")
+  else
+    vim.cmd("bdelete")
+  end
+end, { desc = "Close buffer" })
 
 -- Neotree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
