@@ -9,7 +9,7 @@ return {
   opts = {
     close_if_last_window = false,
     filesystem = {
-      hijack_netrw_behavior = "open_current",
+      hijack_netrw_behavior = "open_default",
       follow_current_file = {
         enabled = true,
       },
