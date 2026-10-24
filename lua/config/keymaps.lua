@@ -23,6 +23,7 @@ end, { desc = "Close buffer" })
 
 -- Neotree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>o", "<cmd>Neotree focus<CR>", { desc = "Focus" })
 
 -- Telescope
 vim.keymap.set("n", "<leader>ff", function()
